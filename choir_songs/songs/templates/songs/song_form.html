@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    {% if move == 'addAlbum' %}
+    <div class="container-fliud">
+        <form method="POST" action="" class="form-control">
+            {% csrf_token %}
+            
+            {{album.as_p}}
+                <input class="btn btn-outline-primary" type="submit" value="Add Vol">
+        </form>
+
+        <div class="mx-auto text-center my-3">
+            <p class=""> Album available ? </p>
+            <a class="btn btn-outline-info my-1" href="{% url 'add-song' %}" role="button">Add a Song</a>
+        </div>
+    </div>
+    {% else %}
+    
+    <div class="container-fliud">
+        <form method="POST" action="" class="form-control">
+            {% csrf_token %}
+
+            <!-- {{form.media}} -->
+            
+            {{form.as_p}}
+            <!-- <textarea></textarea> -->
+            {% if step == 'add' %}
+            <input class="btn btn-outline-primary" type="submit" value="Add Song">
+            {% else %}
+            <input class="btn btn-outline-primary" type="submit" value="Update Song">
+            {% endif %}
+        </form>
+
+        <div class="mx-auto text-center my-3">
+            <p class=""> Album not available ? </p>
+            <a class="btn btn-outline-info my-1" href="{% url 'add-album' %}" role="button">Add Vol</a>
+        </div>
+    </div>
+    {% endif %}    
+
+{% endblock %}
